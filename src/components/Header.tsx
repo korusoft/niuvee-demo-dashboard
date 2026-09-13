@@ -17,7 +17,7 @@ export function Header({ theme, onToggleTheme, isLive }: Props) {
         <div>
           <div className="app-header__title">Niuvee IoT · Monitoreo SG-SST</div>
           <div className="app-header__subtitle">
-            Sabaneta, C.C. Aves María — sensor SCD40
+            Sabaneta, C.C. Aves María — sensor NV-ENV-40
           </div>
         </div>
       </div>
