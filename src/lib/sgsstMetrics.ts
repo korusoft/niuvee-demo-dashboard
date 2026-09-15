@@ -1,9 +1,7 @@
-import type { MetricKey } from './api'
-
 export type Status = 'good' | 'warning' | 'danger'
 
 export interface MetricConfig {
-  key: MetricKey
+  key: string
   label: string
   unit: string
   decimals: number
@@ -11,7 +9,7 @@ export interface MetricConfig {
   sgsst: string
 }
 
-export const METRICS: MetricConfig[] = [
+export const SGSST_METRICS: MetricConfig[] = [
   {
     key: 'temperature',
     label: 'Temperatura',

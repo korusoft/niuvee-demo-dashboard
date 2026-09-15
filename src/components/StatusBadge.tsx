@@ -1,5 +1,5 @@
-import type { Status } from '../lib/thresholds'
-import { STATUS_LABEL } from '../lib/thresholds'
+import type { Status } from '../lib/sgsstMetrics'
+import { STATUS_LABEL } from '../lib/sgsstMetrics'
 
 const ICON: Record<Status, string> = {
   good: '✓',

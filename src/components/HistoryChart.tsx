@@ -1,6 +1,6 @@
 import { Area, AreaChart, CartesianGrid, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts'
 import type { HistoryPoint } from '../lib/api'
-import type { MetricConfig } from '../lib/thresholds'
+import type { MetricConfig } from '../lib/sgsstMetrics'
 
 interface Props {
   config: MetricConfig

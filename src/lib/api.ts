@@ -1,17 +1,11 @@
-export type MetricKey = 'temperature' | 'humidity' | 'co2'
-
 export interface LatestReading {
-  temperature: number | null
-  humidity: number | null
-  co2: number | null
   time: string | null
+  [metric: string]: number | string | null
 }
 
 export interface HistoryPoint {
   time: string
-  temperature: number | null
-  humidity: number | null
-  co2: number | null
+  [metric: string]: number | string | null
 }
 
 export type RangeKey = '1h' | '6h' | '24h' | '7d'
@@ -32,10 +26,18 @@ async function get<T>(path: string): Promise<T> {
   return res.json() as Promise<T>
 }
 
-export function fetchLatest(): Promise<LatestReading> {
-  return get<LatestReading>('/api/latest')
+export interface DashboardApi {
+  fetchLatest: () => Promise<LatestReading>
+  fetchHistory: (range: RangeKey) => Promise<HistoryPoint[]>
 }
 
-export function fetchHistory(range: RangeKey): Promise<HistoryPoint[]> {
-  return get<HistoryPoint[]>(`/api/history?range=${range}`)
+export function createDashboardApi(basePath: string): DashboardApi {
+  return {
+    fetchLatest: () => get<LatestReading>(`${basePath}/latest`),
+    fetchHistory: (range: RangeKey) => get<HistoryPoint[]>(`${basePath}/history?range=${range}`),
+  }
 }
+
+export const sgsstApi = createDashboardApi('/api')
+export const energyApi = createDashboardApi('/api/energy')
+export const agricultureApi = createDashboardApi('/api/agriculture')

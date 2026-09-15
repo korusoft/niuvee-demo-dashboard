@@ -1,10 +1,10 @@
 import { useEffect, useRef, useState } from 'react'
-import { fetchHistory, fetchLatest, type HistoryPoint, type LatestReading, type RangeKey } from '../lib/api'
+import type { DashboardApi, HistoryPoint, LatestReading, RangeKey } from '../lib/api'
 
 const LATEST_POLL_MS = 15_000
 const HISTORY_POLL_MS = 60_000
 
-export function useDashboardData(range: RangeKey) {
+export function useDashboardData(api: DashboardApi, range: RangeKey) {
   const [latest, setLatest] = useState<LatestReading | null>(null)
   const [history, setHistory] = useState<HistoryPoint[]>([])
   const [error, setError] = useState<string | null>(null)
@@ -16,7 +16,7 @@ export function useDashboardData(range: RangeKey) {
 
     async function pollLatest() {
       try {
-        const data = await fetchLatest()
+        const data = await api.fetchLatest()
         if (!cancelled) {
           setLatest(data)
           setError(null)
@@ -32,7 +32,7 @@ export function useDashboardData(range: RangeKey) {
       cancelled = true
       clearInterval(id)
     }
-  }, [])
+  }, [api])
 
   useEffect(() => {
     let cancelled = false
@@ -41,7 +41,7 @@ export function useDashboardData(range: RangeKey) {
     async function pollHistory() {
       try {
         if (isFirstHistoryLoad.current) setLoading(true)
-        const data = await fetchHistory(range)
+        const data = await api.fetchHistory(range)
         if (!cancelled) {
           setHistory(data)
           setError(null)
@@ -62,7 +62,7 @@ export function useDashboardData(range: RangeKey) {
       cancelled = true
       clearInterval(id)
     }
-  }, [range])
+  }, [api, range])
 
   return { latest, history, error, loading }
 }

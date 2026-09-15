@@ -1,17 +1,18 @@
 import { Area, AreaChart, ResponsiveContainer } from 'recharts'
 import type { HistoryPoint } from '../lib/api'
-import type { MetricConfig } from '../lib/thresholds'
+import type { MetricConfig } from '../lib/sgsstMetrics'
 import { StatusBadge } from './StatusBadge'
 
 interface Props {
   config: MetricConfig
-  value: number | null
+  value: number | string | null | undefined
   history: HistoryPoint[]
 }
 
-export function MetricCard({ config, value, history }: Props) {
+export function MetricCard({ config, value: rawValue, history }: Props) {
+  const value = typeof rawValue === 'number' ? rawValue : null
   const status = value != null ? config.evaluate(value) : null
-  const sparkData = history.map((p) => ({ v: p[config.key] }))
+  const sparkData = history.map((p) => ({ v: typeof p[config.key] === 'number' ? p[config.key] : null }))
   const seriesColor = `var(--series-${config.key})`
 
   return (
