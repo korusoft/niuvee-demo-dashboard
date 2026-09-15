@@ -58,7 +58,7 @@ export default function EnergyDashboard({ theme, onToggleTheme }: Props) {
         {loading && history.length === 0 && !error ? (
           <div className="chart-placeholder">Cargando datos del medidor…</div>
         ) : (
-          <div className="charts-grid">
+          <div className="charts-grid charts-grid--full">
             {ENERGY_METRICS.map((config) => (
               <HistoryChart key={config.key} config={config} data={history} />
             ))}

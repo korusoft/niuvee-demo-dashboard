@@ -66,3 +66,32 @@ export function ArrowRightIcon({ size = 16 }: IconProps) {
     </svg>
   )
 }
+
+export function RobotIcon({ size = 20 }: IconProps) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" {...base}>
+      <path d="M12 3v3" />
+      <circle cx="12" cy="3.5" r="1" fill="currentColor" stroke="none" />
+      <rect x="5" y="7" width="14" height="12" rx="3" />
+      <path d="M9 12.5v1.5M15 12.5v1.5" />
+      <path d="M9.5 16.5h5" />
+      <path d="M2 12h3M19 12h3" />
+    </svg>
+  )
+}
+
+export function SendIcon({ size = 16 }: IconProps) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" {...base}>
+      <path d="M4 12 20 4l-6 16-3-7-7-3Z" />
+    </svg>
+  )
+}
+
+export function TrashIcon({ size = 16 }: IconProps) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" {...base}>
+      <path d="M5 7h14M9 7V4h6v3M6 7l1 13h10l1-13" />
+    </svg>
+  )
+}

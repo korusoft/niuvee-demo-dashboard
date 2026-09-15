@@ -1,4 +1,5 @@
 import { queryApi, bucket, MEASUREMENT, FIELDS, FIELD_ALIASES, FIELD_FILTER, RANGE_PRESETS } from '../_lib/influxEnergy.js'
+import { deriveElectricalMetrics } from '../_lib/energySimulation.js'
 
 export default async function handler(req, res) {
   if (!queryApi) return res.status(503).json({ error: 'InfluxDB (energía) not configured' })
@@ -24,6 +25,7 @@ export default async function handler(req, res) {
     const series = rows.map((row) => {
       const point = { time: row._time }
       for (const field of FIELDS) point[FIELD_ALIASES[field] ?? field] = row[field] ?? null
+      Object.assign(point, deriveElectricalMetrics(point.power, point.time))
       return point
     })
     res.status(200).json(series)

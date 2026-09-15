@@ -1,8 +1,9 @@
 import { Link } from 'react-router-dom'
 import { NiuveeLogo } from '../components/layout/NiuveeLogo'
 import { ThemeToggle } from '../components/ThemeToggle'
+import { TalkToUsButton } from '../components/TalkToUsButton'
 import { Footer } from '../components/Footer'
-import { ArrowRightIcon, BoltIcon, LeafIcon, ShieldIcon } from '../components/layout/icons'
+import { ArrowRightIcon, BoltIcon, LeafIcon, RobotIcon, ShieldIcon } from '../components/layout/icons'
 import type { Theme } from '../hooks/useTheme'
 
 interface Props {
@@ -35,7 +36,7 @@ const MODULES = [
     title: 'Agricultura',
     description:
       'Condiciones de cultivo (humedad y temperatura del suelo, luminosidad) para agricultura de precisión.',
-    badge: 'Datos simulados',
+    badge: 'Datos en vivo',
     accent: 'agriculture',
   },
 ] as const
@@ -44,8 +45,13 @@ export default function Home({ theme, onToggleTheme }: Props) {
   return (
     <div className="home-shell">
       <header className="home-header">
-        <NiuveeLogo />
-        <ThemeToggle theme={theme} onToggle={onToggleTheme} />
+        <div className="home-header__inner">
+          <NiuveeLogo />
+          <div className="home-header__actions">
+            <ThemeToggle theme={theme} onToggle={onToggleTheme} />
+            <TalkToUsButton />
+          </div>
+        </div>
       </header>
 
       <main className="home-main">
@@ -76,6 +82,26 @@ export default function Home({ theme, onToggleTheme }: Props) {
             </Link>
           ))}
         </div>
+
+        <Link to="/asistente" className="assistant-banner">
+          <div className="assistant-banner__icon">
+            <RobotIcon size={26} />
+          </div>
+          <div className="assistant-banner__body">
+            <div className="assistant-banner__top">
+              <h2>Asistente de datos con IA</h2>
+              <span className="menu-card__badge">Nuevo</span>
+            </div>
+            <p>
+              Pregúntale en lenguaje natural por los picos de temperatura, CO₂, consumo
+              energético o condiciones del cultivo, y recibe respuestas con recomendaciones
+              basadas en los datos en vivo de cada módulo.
+            </p>
+          </div>
+          <span className="menu-card__cta">
+            Hablar con el asistente <ArrowRightIcon />
+          </span>
+        </Link>
       </main>
 
       <Footer />

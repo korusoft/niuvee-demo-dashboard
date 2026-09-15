@@ -17,6 +17,8 @@
   --series-voltage: #b45309;
   --series-current: #d6942a;
   --series-power: #a83279;
+  --series-frequency: #2a9d8f;
+  --series-powerFactor: #6a4c93;
 
   --series-soil_moisture: #2a78d6;
   --series-soil_temp: #eb6834;
@@ -29,6 +31,8 @@
 
   --brand: #1baf7a;
   --brand-dark: #0f8a5f;
+  --niuvee-primary: #b45309;
+  --niuvee-primary-dark: #8f4207;
 
   --radius-lg: 16px;
   --radius-md: 12px;
@@ -56,6 +60,8 @@
     --series-voltage: #d6942a;
     --series-current: #e5ab4a;
     --series-power: #cf5a9e;
+    --series-frequency: #3fc7b5;
+    --series-powerFactor: #9575cd;
 
     --series-soil_moisture: #3987e5;
     --series-soil_temp: #d95926;
@@ -86,6 +92,8 @@
   --series-voltage: #d6942a;
   --series-current: #e5ab4a;
   --series-power: #cf5a9e;
+  --series-frequency: #3fc7b5;
+  --series-powerFactor: #9575cd;
 
   --series-soil_moisture: #3987e5;
   --series-soil_temp: #d95926;

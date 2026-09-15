@@ -1,4 +1,5 @@
 import { queryApi, bucket, MEASUREMENT, FIELDS, FIELD_ALIASES, FIELD_FILTER } from '../_lib/influxEnergy.js'
+import { deriveElectricalMetrics } from '../_lib/energySimulation.js'
 
 export default async function handler(req, res) {
   if (!queryApi) return res.status(503).json({ error: 'InfluxDB (energía) not configured' })
@@ -21,6 +22,7 @@ export default async function handler(req, res) {
         if (!latest.time || row._time > latest.time) latest.time = row._time
       }
     }
+    Object.assign(latest, deriveElectricalMetrics(latest.power, latest.time))
     res.status(200).json(latest)
   } catch (err) {
     console.error('[api/energy/latest] query failed:', err.message)

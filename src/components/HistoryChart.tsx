@@ -35,7 +35,7 @@ export function HistoryChart({ config, data }: Props) {
   return (
     <div className="history-chart">
       <div className="history-chart__title">
-        {config.label} <span className="history-chart__unit">({config.unit})</span>
+        {config.label} {config.unit && <span className="history-chart__unit">({config.unit})</span>}
       </div>
       <ResponsiveContainer width="100%" height={200}>
         <AreaChart data={data} margin={{ top: 8, right: 12, bottom: 0, left: -12 }}>

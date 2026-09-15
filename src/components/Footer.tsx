@@ -2,14 +2,13 @@ export function Footer() {
   return (
     <footer className="app-footer">
       <p>
-        Datos ambientales reales capturados por un sensor <strong>NV-ENV-40</strong> instalado en una
-        oficina en Sabaneta (C.C. Aves María). Panel de demostración — no representa un sistema de
-        gestión SG-SST certificado.
+        Datos capturados por sensores IoT en tiempo real. Panel de demostración con fines
+        ilustrativos — no representa un sistema de gestión certificado.
       </p>
       <p>
         Impulsado por{' '}
         <a href="https://niuvee.com" target="_blank" rel="noreferrer">
-          Niuvee IoT
+          Niuvee
         </a>
       </p>
     </footer>
